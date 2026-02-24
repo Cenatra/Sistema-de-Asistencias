@@ -1,106 +1,35 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Dashboard | Sistema de Asistencias</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+// PROTEGER DASHBOARD
+const usuario = localStorage.getItem("usuario");
+const rol = localStorage.getItem("rol");
 
-<header class="topbar">
-    <div class="logo-area">
-        <div class="logo-box">📘</div>
-        <div>
-            <h2>Sistema de Asistencias</h2>
-            <span>Gestión de asistencia de empleados</span>
-        </div>
-    </div>
+if (!usuario) {
+    window.location.href = "index.html";
+}
 
-    <div class="user-area">
-        <div>
-            <strong id="rolUsuario"></strong><br>
-            <small id="nombreUsuario"></small>
-        </div>
-        <button onclick="logout()">Cerrar Sesión</button>
-    </div>
-</header>
+// Mostrar datos usuario
+document.getElementById("rolUsuario").textContent = rol;
+document.getElementById("nombreUsuario").textContent = usuario;
 
-<nav class="tabs">
-    <a class="active">Registro</a>
-    <a>Empleados</a>
-    <a>Historial</a>
-    <a>Estadísticas</a>
-</nav>
+// Reloj
+function actualizarReloj() {
+    const ahora = new Date();
+    document.getElementById("reloj").textContent =
+        ahora.toLocaleTimeString();
+}
+setInterval(actualizarReloj, 1000);
+actualizarReloj();
 
-<main class="dashboard">
+// Fecha
+document.getElementById("fecha").textContent =
+    new Date().toLocaleDateString('es-MX', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
 
-    <section class="left-panel">
-        <div class="card registro">
-            <h3>Registro de Asistencia</h3>
-            <p id="fecha"></p>
-
-            <div class="reloj" id="reloj"></div>
-
-            <label>Seleccionar Empleado</label>
-            <select>
-                <option>-- Seleccione un empleado --</option>
-            </select>
-
-            <div class="btn-group">
-                <button class="entrada">Entrada</button>
-                <button class="salida">Salida</button>
-            </div>
-        </div>
-    </section>
-
-    <section class="right-panel">
-
-        <div class="cards-row">
-            <div class="card mini">
-                <h4>Total Empleados</h4>
-                <span>0</span>
-            </div>
-
-            <div class="card mini">
-                <h4>Asistencias</h4>
-                <span>0</span>
-            </div>
-
-            <div class="card mini">
-                <h4>Ausencias</h4>
-                <span>0</span>
-            </div>
-
-            <div class="card mini">
-                <h4>Tardanzas</h4>
-                <span>0</span>
-            </div>
-        </div>
-
-        <div class="card metrics">
-            <h3>Métricas Adicionales</h3>
-            <div class="metrics-row">
-                <div>
-                    <p>Promedio de Horas</p>
-                    <strong>N/A</strong>
-                </div>
-                <div>
-                    <p>Tasa de Asistencia</p>
-                    <strong class="green">0%</strong>
-                </div>
-                <div>
-                    <p>Total Registros</p>
-                    <strong class="purple">0</strong>
-                </div>
-            </div>
-        </div>
-
-    </section>
-
-</main>
-
-<script src="dashboard.js"></script>
-</body>
-</html>
+// Logout
+function logout() {
+    localStorage.clear();
+    window.location.href = "index.html";
+}
