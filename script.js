@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbxVILtgPHuNoCTYXl4eWTCjd8YdzYqIexets92Emve6hz8_qGsc9svBDTIPJQABCLRc/exec";
+const scriptURL = "PEGA_AQUI_TU_URL";
 
 document.getElementById("loginForm").addEventListener("submit", function(e) {
     e.preventDefault();
@@ -15,7 +15,7 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
         if (data.status === "success") {
             localStorage.setItem("usuario", usuario);
             localStorage.setItem("rol", data.rol);
-            window.location.href = "dashboard.js";
+            window.location.href = "dashboard.html";
         } else {
             alert("Usuario o contraseña incorrectos");
         }
