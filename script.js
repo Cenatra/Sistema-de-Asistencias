@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         console.log("Guardado en localStorage:", localStorage.getItem("usuario"));
 
-        window.location.href = "./dashboard.html";
+        window.location.href = "./test.html";
 
       } else {
         alert(data.message);
