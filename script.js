@@ -1,12 +1,10 @@
 const URL = "https://script.google.com/macros/s/AKfycbwc9GSK96zhCbgk1_TD3HFZA8bdwRRV3hMuO1CyXHyIF2mXauQfMosMKtS4PR2_PRZ5/exec";
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
 
   const form = document.getElementById("loginForm");
 
-  if (!form) return;
-
-  form.addEventListener("submit", function(e) {
+  form.addEventListener("submit", function (e) {
     e.preventDefault();
 
     const usuario = document.getElementById("usuario").value.trim();
@@ -14,35 +12,38 @@ document.addEventListener("DOMContentLoaded", function() {
 
     fetch(URL, {
       method: "POST",
+      mode: "cors",
       headers: {
-        "Content-Type": "text/plain;charset=utf-8"
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         usuario: usuario,
         password: password
       })
     })
-    .then(response => response.json())
-    .then(data => {
+    .then(response => response.text())
+    .then(text => {
 
-      console.log("Respuesta servidor:", data);
+      console.log("Respuesta cruda:", text);
+
+      const data = JSON.parse(text);
 
       if (data.success) {
 
         localStorage.setItem("usuario", data.nombre);
         localStorage.setItem("rol", data.rol);
 
-        console.log("Guardado en localStorage:", localStorage.getItem("usuario"));
+        console.log("Guardado:", localStorage.getItem("usuario"));
 
-        window.location.href = "./test.html";
+        window.location.href = "test.html";
 
       } else {
         alert(data.message);
       }
     })
     .catch(error => {
-      console.error("Error real:", error);
-      alert("Error de conexión");
+      console.error("ERROR REAL:", error);
+      alert("Error de conexión o CORS");
     });
 
   });
