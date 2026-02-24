@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard | Sistema de Asistencias</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+    <div class="logo-area">
+        <div class="logo-box">📘</div>
+        <div>
+            <h2>Sistema de Asistencias</h2>
+            <span>Gestión de asistencia de empleados</span>
+        </div>
+    </div>
+
+    <div class="user-area">
+        <div>
+            <strong id="rolUsuario"></strong><br>
+            <small id="nombreUsuario"></small>
+        </div>
+        <button onclick="logout()">Cerrar Sesión</button>
+    </div>
+</header>
+
+<nav class="tabs">
+    <a class="active">Registro</a>
+    <a>Empleados</a>
+    <a>Historial</a>
+    <a>Estadísticas</a>
+</nav>
+
+<main class="dashboard">
+
+    <section class="left-panel">
+        <div class="card">
+            <h3>Registro de Asistencia</h3>
+            <p id="fecha"></p>
+            <div class="reloj" id="reloj"></div>
+
+            <label>Seleccionar Empleado</label>
+            <select>
+                <option>-- Seleccione un empleado --</option>
+            </select>
+
+            <div class="btn-group">
+                <button class="entrada">Entrada</button>
+                <button class="salida">Salida</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="right-panel">
+
+        <div class="cards-row">
+            <div class="card mini">
+                <h4>Total Empleados</h4>
+                <span>0</span>
+            </div>
+
+            <div class="card mini">
+                <h4>Asistencias</h4>
+                <span>0</span>
+            </div>
+
+            <div class="card mini">
+                <h4>Ausencias</h4>
+                <span>0</span>
+            </div>
+
+            <div class="card mini">
+                <h4>Tardanzas</h4>
+                <span>0</span>
+            </div>
+        </div>
+
+    </section>
+
+</main>
+
+<script src="dashboard.js"></script>
+</body>
+</html>
