@@ -1,24 +1,35 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbxVILtgPHuNoCTYXl4eWTCjd8YdzYqIexets92Emve6hz8_qGsc9svBDTIPJQABCLRc/exec";
+const URL = "https://script.google.com/macros/s/AKfycbwc9GSK96zhCbgk1_TD3HFZA8bdwRRV3hMuO1CyXHyIF2mXauQfMosMKtS4PR2_PRZ5/exec";
 
 document.getElementById("loginForm").addEventListener("submit", function(e) {
-    e.preventDefault();
+  e.preventDefault();
 
-    const usuario = document.getElementById("usuario").value;
-    const password = document.getElementById("password").value;
+  const usuario = document.getElementById("usuario").value;
+  const password = document.getElementById("password").value;
 
-    fetch(scriptURL, {
-        method: "POST",
-        body: JSON.stringify({ usuario, password })
+  fetch(URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "text/plain;charset=utf-8"
+    },
+    body: JSON.stringify({
+      usuario: usuario,
+      password: password
     })
-    .then(res => res.json())
-    .then(data => {
-        if (data.status === "success") {
-            localStorage.setItem("usuario", usuario);
-            localStorage.setItem("rol", data.rol);
-            window.location.href = "dashboard.html";
-        } else {
-            alert("Usuario o contraseña incorrectos");
-        }
-    })
-    .catch(() => alert("Error de conexión"));
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log("Respuesta servidor:", data);
+
+    if (data.success) {
+      localStorage.setItem("usuario", data.nombre);
+      localStorage.setItem("rol", data.rol);
+      window.location.href = "dashboard.html";
+    } else {
+      alert(data.message);
+    }
+  })
+  .catch(error => {
+    console.error("Error real:", error);
+    alert("Error de conexión");
+  });
 });
