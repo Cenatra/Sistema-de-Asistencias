@@ -15,7 +15,7 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
         if (data.status === "success") {
             localStorage.setItem("usuario", usuario);
             localStorage.setItem("rol", data.rol);
-            window.location.href = "dashboard.html";
+            window.location.href = "dashboard.js";
         } else {
             alert("Usuario o contraseña incorrectos");
         }
