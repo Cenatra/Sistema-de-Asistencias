@@ -3,6 +3,7 @@ const URL = "https://script.google.com/macros/s/AKfycbwc9GSK96zhCbgk1_TD3HFZA8bd
 document.addEventListener("DOMContentLoaded", function () {
 
   const form = document.getElementById("loginForm");
+  if (!form) return;
 
   form.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -24,8 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
     .then(response => response.text())
     .then(text => {
 
-      console.log("Respuesta cruda:", text);
-
       const data = JSON.parse(text);
 
       if (data.success) {
@@ -33,17 +32,16 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("usuario", data.nombre);
         localStorage.setItem("rol", data.rol);
 
-        console.log("Guardado:", localStorage.getItem("usuario"));
-
         window.location.href = "dashboard.html";
 
       } else {
         alert(data.message);
       }
+
     })
     .catch(error => {
-      console.error("ERROR REAL:", error);
-      alert("Error de conexión o CORS");
+      console.error("Error:", error);
+      alert("Error de conexión");
     });
 
   });
