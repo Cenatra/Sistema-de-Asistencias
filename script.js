@@ -1,4 +1,4 @@
-const scriptURL = "PEGA_AQUI_TU_URL";
+const scriptURL = "https://script.google.com/macros/s/AKfycbxVILtgPHuNoCTYXl4eWTCjd8YdzYqIexets92Emve6hz8_qGsc9svBDTIPJQABCLRc/exec";
 
 document.getElementById("loginForm").addEventListener("submit", function(e) {
     e.preventDefault();
