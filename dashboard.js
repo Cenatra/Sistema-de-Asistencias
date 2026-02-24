@@ -1,34 +1,35 @@
-// PROTEGER DASHBOARD
-const usuario = localStorage.getItem("usuario");
-const rol = localStorage.getItem("rol");
+document.addEventListener("DOMContentLoaded", function () {
 
-if (!usuario) {
-    window.location.href = "index.html";
-}
+    const usuario = localStorage.getItem("usuario");
+    const rol = localStorage.getItem("rol");
 
-// Mostrar datos usuario
-document.getElementById("rolUsuario").textContent = rol;
-document.getElementById("nombreUsuario").textContent = usuario;
+    if (!usuario || !rol) {
+        window.location.href = "index.html";
+        return;
+    }
 
-// Reloj
-function actualizarReloj() {
-    const ahora = new Date();
-    document.getElementById("reloj").textContent =
-        ahora.toLocaleTimeString();
-}
-setInterval(actualizarReloj, 1000);
-actualizarReloj();
+    document.getElementById("rolUsuario").textContent = rol;
+    document.getElementById("nombreUsuario").textContent = usuario;
 
-// Fecha
-document.getElementById("fecha").textContent =
-    new Date().toLocaleDateString('es-MX', {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    });
+    function actualizarReloj() {
+        const ahora = new Date();
+        document.getElementById("reloj").textContent =
+            ahora.toLocaleTimeString();
+    }
 
-// Logout
+    setInterval(actualizarReloj, 1000);
+    actualizarReloj();
+
+    document.getElementById("fecha").textContent =
+        new Date().toLocaleDateString('es-MX', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+
+});
+
 function logout() {
     localStorage.clear();
     window.location.href = "index.html";
