@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbxVILtgPHuNoCTYXl4eWTCjd8YdzYqIexets92Emve6hz8_qGsc9svBDTIPJQABCLRc/exec";
+const scriptURL = "PEGA_AQUI_TU_URL";
 
 document.getElementById("loginForm").addEventListener("submit", function(e) {
     e.preventDefault();
@@ -11,16 +11,14 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
         body: JSON.stringify({ usuario, password })
     })
     .then(res => res.json())
-    .then(response => {
-        if (response.status === "success") {
-            alert("Bienvenido " + response.rol);
+    .then(data => {
+        if (data.status === "success") {
+            localStorage.setItem("usuario", usuario);
+            localStorage.setItem("rol", data.rol);
             window.location.href = "dashboard.html";
         } else {
             alert("Usuario o contraseña incorrectos");
         }
     })
-    .catch(error => {
-        console.error("Error:", error);
-        alert("Error de conexión");
-    });
-});;
+    .catch(() => alert("Error de conexión"));
+});
