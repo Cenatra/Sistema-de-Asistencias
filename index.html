@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Asistencias | Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="login-card">
+
+            <div class="icon-circle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" fill="white" viewBox="0 0 24 24">
+                    <path d="M6 2C4.9 2 4 2.9 4 4v16c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V8l-6-6H6zm7 7V3.5L18.5 9H13z"/>
+                </svg>
+            </div>
+
+            <h1>Sistema de Asistencias</h1>
+            <p class="subtitle">Ingrese sus credenciales para continuar</p>
+
+            <form id="loginForm">
+
+                <div class="input-group">
+                    <label for="usuario">Usuario</label>
+                    <input type="text" id="usuario" placeholder="Ingrese su usuario" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" placeholder="Ingrese su contraseña" required>
+                </div>
+
+                <button type="submit" class="btn-login">Iniciar Sesión</button>
+
+            </form>
+
+            <div class="footer">
+                Sistema de Control de Asistencias v1.0
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
