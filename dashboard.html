@@ -1,36 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
   <title>Dashboard</title>
 </head>
 <body>
 
-<h1>Bienvenido</h1>
-<p id="nombre"></p>
-<p id="rol"></p>
+<h1>Dashboard</h1>
 
-<button onclick="cerrarSesion()">Cerrar sesión</button>
+<p id="info"></p>
+
+<button onclick="logout()">Cerrar sesión</button>
 
 <script>
-  // Verificar sesión al cargar
-  document.addEventListener("DOMContentLoaded", function () {
 
-    const usuario = localStorage.getItem("usuario");
-    const rol = localStorage.getItem("rol");
+document.addEventListener("DOMContentLoaded", function() {
 
-    if (!usuario || !rol) {
-      window.location.href = "index.html";
-      return;
-    }
+  const usuario = localStorage.getItem("usuario");
+  const rol = localStorage.getItem("rol");
 
-    document.getElementById("nombre").textContent = "Usuario: " + usuario;
-    document.getElementById("rol").textContent = "Rol: " + rol;
-  });
-
-  function cerrarSesion() {
-    localStorage.clear();
+  if (!usuario || !rol) {
     window.location.href = "index.html";
+    return;
   }
+
+  document.getElementById("info").textContent =
+    "Bienvenido " + usuario + " | Rol: " + rol;
+
+});
+
+function logout() {
+  localStorage.clear();
+  window.location.href = "index.html";
+}
+
 </script>
 
 </body>
